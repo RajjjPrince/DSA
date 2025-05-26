@@ -74,7 +74,20 @@ public class sortList {
 		
 	}
 		// add a node i sorted list
-	
+	public ListNode addNode (int value ) {
+		
+		ListNode newNode = new ListNode (value);
+		if (head == null) return newNode;
+		ListNode curr = head;
+		ListNode temp = null;
+		while (curr != null && curr.data < newNode.data) {
+			temp = curr;
+			curr = curr.next;
+		}
+		newNode.next = curr;
+		temp.next = newNode;
+		return head;
+	}
 
 
 	  
@@ -103,6 +116,8 @@ public class sortList {
 		sll.head = sll.Sort(sll.head);
 		sll.display();
 		sll.remove();
+		sll.display();
+		sll.addNode(7);
 		sll.display();
 		
 	}
