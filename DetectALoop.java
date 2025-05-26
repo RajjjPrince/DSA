@@ -12,16 +12,16 @@ public class DetectALoop {
 			}
 		}
 	
-	public ListNode loop() {
+	public boolean loop() {
 		ListNode slowPtr = head;
 		ListNode fastPtr = head;
 		while (fastPtr != null && fastPtr.next != null) {
 			slowPtr = slowPtr.next;
 			fastPtr = fastPtr.next.next;
 			
-			if(slowPtr == fastPtr) return slowPtr; 
+			if(slowPtr == fastPtr) return true; 
 		}
-		return null;
+		return false;
 	}
 	
 	public void display() {
@@ -55,8 +55,11 @@ public class DetectALoop {
 		seventh.next = eight;
 		eight.next = fifth;
 		
-		
-		System.out.println(sll.loop().data);
+		if(sll.loop()) {
+		System.out.println("Loop is detected.");
+		}else {
+			System.out.println("Loop is not detected.");
+		}
 		
 	}
 }
