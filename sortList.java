@@ -60,7 +60,20 @@ public class sortList {
 		ListNode l2 = Sort(slow);
 		return merge(l1,l2);
 		}
-	
+		// remove duplicate in sorted list
+	public void remove() {
+		if(head == null) return ;
+		ListNode curr = head;
+		while(curr != null && curr.next != null) {
+			if(curr.data == curr.next.data) {
+				curr.next = curr.next.next;
+			}else {
+				curr = curr.next;
+			}
+		}
+		
+	}
+		// add a node i sorted list
 	
 
 
@@ -74,7 +87,7 @@ public class sortList {
 		ListNode fourth = new ListNode(8);
 		ListNode fifth = new ListNode(7);
 		ListNode sixth = new ListNode(4);
-		ListNode seventh = new ListNode(13);
+		ListNode seventh = new ListNode(8);
 		ListNode eight = new ListNode(11);
 		ListNode nineth = new ListNode(9);
 		
@@ -89,5 +102,8 @@ public class sortList {
 		sll.display();
 		sll.head = sll.Sort(sll.head);
 		sll.display();
+		sll.remove();
+		sll.display();
+		
 	}
 }
