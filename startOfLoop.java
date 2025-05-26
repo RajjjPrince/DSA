@@ -19,7 +19,8 @@ public class startOfLoop {
 			slowPtr = slowPtr.next;
 			fastPtr = fastPtr.next.next;
 			
-			if(slowPtr == fastPtr) return startNode(slowPtr); 
+			//if(slowPtr == fastPtr) return startNode(slowPtr); start of a loop
+			if (slowPtr == fastPtr )  removeLoop(slowPtr);
 		}
 		return null;
 	}
@@ -31,8 +32,24 @@ public class startOfLoop {
 		}
 		return temp;
 	}
-	
+	public void removeLoop(ListNode slowPtr) {
+		ListNode temp = head;
+		while (temp.next != slowPtr.next) {
+			temp = temp.next;
+			slowPtr = slowPtr.next;
+		}
+		slowPtr.next = null;
+	}
 
+	public void display() {
+		ListNode curr = head;
+		while(curr != null) {
+			System.out.print(curr.data +"-->");
+			curr = curr.next;
+		}
+		System.out.print("null");
+		System.out.println();
+	}
 	
 	public static void main(String [] args ) {
 		startOfLoop sll = new startOfLoop();
@@ -55,7 +72,8 @@ public class startOfLoop {
 		seventh.next = eight;
 		eight.next = fifth;
 		
-		System.out.println(sll.loop().data);
-		
+		//System.out.println(sll.loop().data);
+		sll.loop();
+		sll.display();
 	}
 }
