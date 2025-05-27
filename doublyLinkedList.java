@@ -34,6 +34,18 @@ public class doublyLinkedList {
 			tail = newNode;
 			length++;
 		}
+		
+		public void insertFirst(int value) {
+			ListNode newNode = new ListNode (value);
+			if(isEmpty()) {
+				tail = newNode;
+			}else {
+				head.previous = newNode;
+			}
+			newNode.next = head;
+			head = newNode;
+			length++;
+		}
 		 public void displayForward() {
 			 ListNode curr = head;
 			 while(curr!= null) {
@@ -64,6 +76,12 @@ public class doublyLinkedList {
 			
 			dll.displayForward();
 			dll.displayBackward();
+			
+			dll.insertFirst(2);
+			
+			dll.displayForward();
+			dll.displayBackward();
+			System.out.println(dll.length);
 			
 		}
 	
