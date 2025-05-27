@@ -1,5 +1,8 @@
 package linkedList;
 
+import java.util.NoSuchElementException;
+
+
 public class doublyLinkedList {
 	private ListNode head;
 	private ListNode tail;
@@ -33,6 +36,43 @@ public class doublyLinkedList {
 			newNode.previous = tail;
 			tail = newNode;
 			length++;
+		} 
+		
+		public ListNode deleteLast() {
+			if(isEmpty()) {
+				throw new NoSuchElementException();
+			}
+			ListNode temp = tail;
+			if(head == tail) {
+				head= null;
+			}else {
+				tail.previous.next = null;
+			}
+			tail = tail.previous;
+			temp.previous = null;
+			length--;
+			return temp;
+		}
+		
+		
+		public ListNode deleteFirst() {
+			if(isEmpty()) {
+				throw new NoSuchElementException();
+			}
+			
+			ListNode temp = head;
+			if(head == tail) {
+				tail = null;
+			}else {
+				head.next.previous = null;
+			}
+			head= head.next;
+			temp.next = null;
+			
+			length--;
+			return temp;
+			
+			
 		}
 		
 		public void insertFirst(int value) {
@@ -82,6 +122,13 @@ public class doublyLinkedList {
 			dll.displayForward();
 			dll.displayBackward();
 			System.out.println(dll.length);
+			
+			dll.deleteFirst();
+			dll.displayForward();
+			System.out.println(dll.deleteLast().data);
+			//dll.deleteLast();
+			dll.displayForward();
+			
 			
 		}
 	
