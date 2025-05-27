@@ -31,8 +31,30 @@ public class mergeList {
 		else temp.next = a;
 		return dummy.next;
 	}
-	
-	
+	public static ListNode add(ListNode a , ListNode b) {
+	    ListNode dummy = new ListNode(0);
+	    ListNode temp = dummy;
+	    int carry = 0;
+	    
+	    while (a != null || b != null) {
+	        int x = (a != null) ? a.data : 0;
+	        int y = (b != null) ? b.data : 0;
+	        int sum = carry + x + y;
+	        carry = sum / 10;
+	        temp.next = new ListNode(sum % 10);
+	        temp = temp.next;
+	        
+	        if (a != null) a = a.next;
+	        if (b != null) b = b.next;
+	    }
+	    
+	    if (carry > 0) {
+	        temp.next = new ListNode(carry);
+	    }
+	    
+	    return dummy.next;
+	}
+
 	public void display() {
 		ListNode curr  = head;
 		while (curr != null) {
@@ -88,9 +110,12 @@ public class mergeList {
 		sll2.display();
 		
 		
-		mergeList result = new mergeList();
-		result.head = merge(sll1.head,sll2.head);
-		result.display();
+		//mergeList result = new mergeList();
+		//result.head = merge(sll1.head,sll2.head);
+		//result.display();
 		
+		mergeList Add = new mergeList();
+		Add.head = add(sll1.head,sll2.head);
+		Add.display();
 	}
 }
